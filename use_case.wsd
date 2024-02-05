@@ -1,0 +1,42 @@
+@startuml
+
+left to right direction
+
+actor "Сотрудник склада" as warehouse_staff
+actor "Менеджер" as manager
+actor "Сотрудник торгового помещения" as store_staff
+actor "Кассир" as cashier
+
+rectangle "Склад" as warehouse {
+  usecase "Подготовка заказа" as prepare_order
+  usecase "Прием товара" as receive_goods
+  usecase "Аудит товара" as audit_goods
+  usecase "Выдача товара" as issue_goods
+}
+
+rectangle "Торговое помещение" as store {
+  usecase "Прием товара на реализацию" as receive_goods_on_sale
+  usecase "Учет месторасположения товара" as track_location
+  usecase "Аудит работы сотрудников" as audit_employees
+}
+
+rectangle "Кассовый аппарат" as cash_register {
+  usecase "Продажа" as sale
+  usecase "Оформление покупки" as process_purchase
+  usecase "Кассовая операция" as register
+}
+
+warehouse_staff --> prepare_order
+prepare_order --> receive_goods
+receive_goods --> audit_goods
+audit_goods --> issue_goods
+
+store_staff --> receive_goods_on_sale
+receive_goods_on_sale --> track_location
+track_location --> audit_employees
+
+cashier --> sale
+sale --> process_purchase
+process_purchase --> register
+
+@enduml
