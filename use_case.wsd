@@ -3,7 +3,6 @@
 left to right direction
 
 actor "Сотрудник склада" as warehouse_staff
-actor "Менеджер" as manager
 actor "Сотрудник торгового помещения" as store_staff
 actor "Кассир" as cashier
 
